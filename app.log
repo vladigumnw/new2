@@ -1,0 +1,3 @@
+{"level":"info","msg":"Application starting...","time":"2025-01-13T00:38:32-08:00"}
+{"level":"info","msg":"Hello route accessed","time":"2025-01-13T00:39:21-08:00"}
+{"level":"info","msg":"Status route accessed","time":"2025-01-13T00:39:39-08:00"}
