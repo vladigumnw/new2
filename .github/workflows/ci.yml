@@ -16,10 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Remove Pre-installed Go
+        run: sudo apt-get remove --purge golang-go -y || true
+
+      - name: Clear Go cache
+        run: sudo rm -rf /opt/hostedtoolcache/go
+
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
           go-version: 1.20
+
+      - name: Verify Go version
+        run: go version
 
       - name: Install dependencies
         run: go mod tidy

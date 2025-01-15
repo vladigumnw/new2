@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
-	"gopkg.in/gomail.v2"
+	// "gopkg.in/gomail.v2"
 )
 
 var log = logrus.New()
@@ -42,30 +42,30 @@ func initLogger() {
 	// log.SetFormatter(&logrus.JSONFormatter{})
 }
 
-func sendErrorEmail(errorMessage string) {
-	m := gomail.NewMessage()
+// func sendErrorEmail(errorMessage string) {
+// 	m := gomail.NewMessage()
 
-	m.SetHeader("From", "your-email@example.com")
-	m.SetHeader("To", "recipient@example.com")
-	m.SetHeader("Subject", "Emergency: Application Error")
+// 	m.SetHeader("From", "your-email@example.com")
+// 	m.SetHeader("To", "recipient@example.com")
+// 	m.SetHeader("Subject", "Emergency: Application Error")
 
-	m.SetBody("text/plain", fmt.Sprintf("An error occurred: \n\n%s", errorMessage))
+// 	m.SetBody("text/plain", fmt.Sprintf("An error occurred: \n\n%s", errorMessage))
 
-	d := gomail.NewDialer("smtp.example.com", 587, "your-email@example.com", "your-email-password")
+// 	d := gomail.NewDialer("smtp.example.com", 587, "your-email@example.com", "your-email-password")
 
-	if err := d.DialAndSend(m); err != nil {
-		log.WithError(err).Error("Failed to send error email")
-	}
-}
+// 	if err := d.DialAndSend(m); err != nil {
+// 		log.WithError(err).Error("Failed to send error email")
+// 	}
+// }
 
-func logErrorAndNotify(err error, context string) {
-	log.WithFields(logrus.Fields{
-		"error":   err.Error(),
-		"context": context,
-	}).Error("Critical error occurred")
+// func logErrorAndNotify(err error, context string) {
+// 	log.WithFields(logrus.Fields{
+// 		"error":   err.Error(),
+// 		"context": context,
+// 	}).Error("Critical error occurred")
 
-	sendErrorEmail(fmt.Sprintf("Error: %s\nContext: %s", err.Error(), context))
-}
+// 	sendErrorEmail(fmt.Sprintf("Error: %s\nContext: %s", err.Error(), context))
+// }
 
 type Response struct {
 	Message string `json:"message"`
