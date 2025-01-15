@@ -11,13 +11,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Remove Pre-installed Go
         run: sudo apt-get remove --purge golang-go -y || true
+
+      - name: Clear Go cache
+        run: sudo rm -rf /opt/hostedtoolcache/go
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -33,6 +35,3 @@ jobs:
 
       - name: Run tests
         run: go test ./...
-
-      - name: Build Docker image
-        run: docker build -t new2
