@@ -19,9 +19,6 @@ jobs:
       - name: Remove Pre-installed Go
         run: sudo apt-get remove --purge golang-go -y || true
 
-      - name: Clear Go cache
-        run: sudo rm -rf /opt/hostedtoolcache/go
-
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
