@@ -21,7 +21,6 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go-version }}
-        check-latest: true
 
     - name: Cache Go modules
       uses: actions/cache@v3
@@ -29,9 +28,9 @@ jobs:
         path: |
           ~/go/pkg/mod
           ~/.cache/go-build
-        key: reset-cache-${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          reset-cache-${{ runner.os }}-go-
+          ${{ runner.os }}-go-
 
     - name: Install dependencies
       run: go mod tidy
