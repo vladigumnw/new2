@@ -32,21 +32,28 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
 
+    - name: Log environment and level
+      run: |
+          echo "Log Level: ${{ github.event.inputs.logLevel }}"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+      
+  
+
     - name: Cache Go modules
       uses: actions/cache@v3
       with:
         path: |
           ~/go/pkg/mod
           ~/.cache/go-build
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
-
+          
     - name: Install dependencies
       run: go mod tidy
 
     - name: Build
       run: go build -o main .
 
-    - name: Test
-      run: go test ./...
+    - name: Run tests with coverage
+      run: go test -cover ./...
