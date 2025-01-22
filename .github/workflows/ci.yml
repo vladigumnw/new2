@@ -63,5 +63,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: your-docker-username/your-app:latest
+        tags: vladigumnw/your-app:latest
     
