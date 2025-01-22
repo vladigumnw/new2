@@ -63,5 +63,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: vladigumnw/your-app:latest
+        tags: wkwkwkabc12345/your-app:latest
     
